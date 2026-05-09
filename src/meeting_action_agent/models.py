@@ -74,3 +74,20 @@ class OpenQuestion(BaseModel):
         default_factory=list,
         description="Meeting text evidence supporting the open question."
     )
+
+
+class Risk(BaseModel):
+    """
+    A risk, blocker, uncertainty, or possible problem identified in the meeting.
+    """
+
+    risk: str = Field(
+        description="The identified risk."
+    )
+    status: InformationStatus = Field(
+        description="Whether the risk was explicit, inferred, or unclear."
+    )
+    evidence: list[EvidenceItem] = Field(
+        default_factory=list,
+        description="Meeting text evidence supporting the risk."
+    )
