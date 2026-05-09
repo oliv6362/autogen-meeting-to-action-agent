@@ -103,7 +103,10 @@ class Risk(BaseModel):
 
 class MeetingExtraction(BaseModel):
     """
-    The complete structured output extracted from a meeting transcript or notes.
+    Top-level data model for the agent's extracted meeting output.
+
+    This model defines the expected structure of the complete output from one
+    meeting transcript or notes file.
     """
 
     meeting_title: str = Field(
