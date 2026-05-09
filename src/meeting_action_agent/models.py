@@ -31,3 +31,29 @@ class Decision(BaseModel):
         default_factory=list,
         description="Meeting text evidence supporting the decision."
     )
+
+
+class ActionItem(BaseModel):
+    """
+    A follow-up task identified in the meeting.
+    """
+
+    task: str = Field(
+        description="The action item or task to complete."
+    )
+    owner: str = Field(
+        description="The person responsible for the task. Use 'Unclear' if missing."
+    )
+    deadline: str = Field(
+        description="The deadline for the task. Use 'Not specified' if missing."
+    )
+    context: str = Field(
+        description="Short explanation of why this task exists."
+    )
+    status: InformationStatus = Field(
+        description="Whether the task was explicit, inferred, or unclear."
+    )
+    evidence: list[EvidenceItem] = Field(
+        default_factory=list,
+        description="Meeting text evidence supporting the action item."
+    )
