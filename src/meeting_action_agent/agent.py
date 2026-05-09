@@ -2,6 +2,7 @@ from autogen import ConversableAgent
 
 from src.meeting_action_agent.config import LLM_CONFIG
 from src.meeting_action_agent.tools.input_tool import read_meeting_file
+from src.meeting_action_agent.tools.validation_tool import validate_meeting_output
 
 
 def create_meeting_agent() -> ConversableAgent:
@@ -21,6 +22,8 @@ def create_meeting_agent() -> ConversableAgent:
             "If read_meeting_file returns success=false, do not continue with extraction. "
             "Report the error clearly and end with TERMINATE. "
             "After reading the meeting text, extract structured meeting information. "
+            "After extracting structured information, use validate_meeting_output to check the result. "
+            "If validation returns errors, correct the structured output once and validate it again. "
             "When the task is complete, end your response with TERMINATE."
         ),
         llm_config=LLM_CONFIG,
@@ -64,3 +67,17 @@ def register_tools(meeting_agent: ConversableAgent, user_proxy: ConversableAgent
     user_proxy.register_for_execution(
         name="read_meeting_file"
     )(read_meeting_file)
+
+    meeting_agent.register_for_llm(
+        name="validate_meeting_output",
+        description=(
+            "Validate structured meeting extraction output using deterministic Python checks. "
+            "Input: structured meeting data as JSON-compatible data. "
+            "Output: validation result with valid, errors, and warnings. "
+            "Use this after extracting decisions, action items, open questions, and risks."
+        ),
+    )(validate_meeting_output)
+
+    user_proxy.register_for_execution(
+        name="validate_meeting_output"
+    )(validate_meeting_output)
