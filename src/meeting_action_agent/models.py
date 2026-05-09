@@ -1,6 +1,14 @@
 from typing import Literal
 from pydantic import BaseModel, Field
 
+"""
+Shared Pydantic data models for the Meeting-to-Action Agent.
+
+These models define the expected structure of the agent's extracted meeting data,
+including decisions, action items, open questions, risks, supporting evidence,
+and validation results.
+"""
+
 
 InformationStatus = Literal["explicit", "inferred", "unclear"]
 
@@ -91,3 +99,43 @@ class Risk(BaseModel):
         default_factory=list,
         description="Meeting text evidence supporting the risk."
     )
+
+
+class MeetingExtraction(BaseModel):
+    """
+    The complete structured output extracted from a meeting transcript or notes.
+    """
+
+    meeting_title: str = Field(
+        default="Untitled meeting",
+        description="Short descriptive title for the meeting."
+    )
+    summary: str = Field(
+        description="Brief summary of the meeting."
+    )
+    decisions: list[Decision] = Field(
+        default_factory=list,
+        description="Decisions identified in the meeting."
+    )
+    action_items: list[ActionItem] = Field(
+        default_factory=list,
+        description="Action items identified in the meeting."
+    )
+    open_questions: list[OpenQuestion] = Field(
+        default_factory=list,
+        description="Open questions identified in the meeting."
+    )
+    risks: list[Risk] = Field(
+        default_factory=list,
+        description="Risks identified in the meeting."
+    )
+
+
+class ValidationResult(BaseModel):
+    """
+    Result returned by the deterministic validation tool.
+    """
+
+    valid: bool
+    errors: list[str] = Field(default_factory=list)
+    warnings: list[str] = Field(default_factory=list)
