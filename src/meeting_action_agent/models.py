@@ -57,3 +57,20 @@ class ActionItem(BaseModel):
         default_factory=list,
         description="Meeting text evidence supporting the action item."
     )
+
+
+class OpenQuestion(BaseModel):
+    """
+    An unresolved question from the meeting.
+    """
+
+    question: str = Field(
+        description="The unresolved question."
+    )
+    status: InformationStatus = Field(
+        description="Whether the question was explicit, inferred, or unclear."
+    )
+    evidence: list[EvidenceItem] = Field(
+        default_factory=list,
+        description="Meeting text evidence supporting the open question."
+    )
