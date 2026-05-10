@@ -92,3 +92,11 @@ def register_tools(meeting_agent: ConversableAgent, user_proxy: ConversableAgent
     user_proxy.register_for_execution(
         name="validate_meeting_output"
     )(validate_meeting_output)
+
+def create_agents() -> tuple[ConversableAgent, ConversableAgent]:
+    meeting_agent = create_meeting_agent()
+    user_proxy = create_user_proxy()
+
+    register_tools(meeting_agent, user_proxy)
+
+    return meeting_agent, user_proxy
