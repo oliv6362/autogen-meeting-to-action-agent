@@ -24,7 +24,7 @@ def create_meeting_agent() -> ConversableAgent:
             "Use unclear when the information is ambiguous. "
             "If an owner is missing, use 'Unclear'. "
             "If a deadline is missing, use 'Not specified'. "
-            "Return only the structured data requested by the workflow."
+            "Return only the structured JSON data requested by the workflow."
         ),
         llm_config=LLM_CONFIG,
     )
