@@ -1,8 +1,10 @@
 from typing import Any
 
 from src.meeting_action_agent.models import EvidenceItem, MeetingExtraction
+from src.meeting_action_agent.logger import log_tool
 
 
+@log_tool("format_meeting_report")
 def format_meeting_report(data: dict[str, Any]) -> str:
     """
     Format structured meeting extraction data as a Markdown report.

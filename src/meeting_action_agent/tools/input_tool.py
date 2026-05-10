@@ -1,10 +1,12 @@
 from pathlib import Path
 from typing import Any
 
+from src.meeting_action_agent.logger import log_tool
+
 
 SUPPORTED_FILE_TYPES = {".txt", ".md"}
 
-
+@log_tool("read_meeting_file")
 def read_meeting_file(file_path: str) -> dict[str, Any]:
     """
     Read a local meeting transcript or notes file.

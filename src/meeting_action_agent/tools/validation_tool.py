@@ -1,8 +1,11 @@
 from typing import Any
 from pydantic import ValidationError
+
 from src.meeting_action_agent.models import MeetingExtraction, ValidationResult
+from src.meeting_action_agent.logger import log_tool
 
 
+@log_tool("validate_meeting_output")
 def validate_meeting_output(data: dict[str, Any]) -> dict[str, Any]:
     """
     Validate structured meeting extraction output.
