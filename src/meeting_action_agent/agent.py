@@ -16,8 +16,11 @@ def create_meeting_agent() -> ConversableAgent:
             "\n\n"
             "You must identify decisions, action items, owners, deadlines, open questions, and risks. "
             "\n\n"
-            "You have access to these tools: "
-            "read_meeting_file, validate_meeting_output, and format_meeting_report. "
+            "You are only allowed to use these tools: read_meeting_file, validate_meeting_output, and format_meeting_report. "
+            "Do not request or invent any other tools. "
+            "Do not use web search, Google search, browser tools, or external APIs. "
+            "If validation fails, fix the structured data using the validation errors and the original meeting text. "
+            "Do not search for general meeting-minute examples. "
             "\n\n"
             "Use read_meeting_file when the user provides a file path. "
             "If read_meeting_file returns success=false, do not continue with extraction. "
@@ -92,6 +95,7 @@ def register_tools(meeting_agent: ConversableAgent, user_proxy: ConversableAgent
     user_proxy.register_for_execution(
         name="validate_meeting_output"
     )(validate_meeting_output)
+
 
 def create_agents() -> tuple[ConversableAgent, ConversableAgent]:
     meeting_agent = create_meeting_agent()
