@@ -1,6 +1,3 @@
-from typing import Literal
-from pydantic import BaseModel, Field
-
 """
 Shared Pydantic data models for the Meeting-to-Action Agent.
 
@@ -8,6 +5,9 @@ These models define the expected structure of the agent's extracted meeting data
 including decisions, action items, open questions, risks, supporting evidence,
 and validation results.
 """
+
+from typing import Literal
+from pydantic import BaseModel, Field
 
 
 InformationStatus = Literal["explicit", "inferred", "unclear"]
