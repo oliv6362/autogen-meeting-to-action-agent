@@ -3,6 +3,7 @@ from autogen import ConversableAgent
 from src.meeting_action_agent.config import LLM_CONFIG
 from src.meeting_action_agent.tools.input_tool import read_meeting_file
 from src.meeting_action_agent.tools.validation_tool import validate_meeting_output
+from src.meeting_action_agent.tools.formatter_tool import format_meeting_report
 
 
 def create_meeting_agent() -> ConversableAgent:
@@ -24,6 +25,16 @@ def create_meeting_agent() -> ConversableAgent:
             "After reading the meeting text, extract structured meeting information. "
             "After extracting structured information, use validate_meeting_output to check the result. "
             "If validation returns errors, correct the structured output once and validate it again. "
+            "\n\n"
+            "Rules: "
+            "Do not invent information. "
+            "Every decision, action item, open question, and risk must include evidence from the meeting text. "
+            "Mark information as explicit only when it is clearly stated in the meeting text. "
+            "Mark information as inferred when it is a reasonable conclusion but not directly stated. "
+            "If an owner is missing, use 'Unclear'. "
+            "If a deadline is missing, use 'Not specified'. "
+            "If the meeting contains contradictions, mark them as unresolved instead of choosing one side. "
+            "\n\n"
             "When the task is complete, end your response with TERMINATE."
         ),
         llm_config=LLM_CONFIG,
