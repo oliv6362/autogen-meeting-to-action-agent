@@ -60,7 +60,7 @@ def _validate_decisions(meeting: MeetingExtraction, errors: list[str], warnings:
             warnings.append(f"Decision {index} has no supporting evidence.")
 
         if decision.status in {"inferred", "unclear"}:
-            warnings.append(f"Action item {index} has status '{decision.status}' and should be reviewed.")
+            warnings.append(f"Decision {index} has status '{decision.status}' and should be reviewed.")
 
 
 def _validate_action_items(meeting: MeetingExtraction, errors: list[str], warnings: list[str]) -> None:
@@ -97,7 +97,7 @@ def _validate_open_questions(meeting: MeetingExtraction, errors: list[str], warn
             warnings.append(f"Open question {index} has no supporting evidence.")
 
         if open_question.status in {"inferred", "unclear"}:
-            warnings.append(f"Action item {index} has status '{open_question.status}' and should be reviewed.")
+            warnings.append(f"Open question {index} has status '{open_question.status}' and should be reviewed.")
 
 
 def _validate_risks(meeting: MeetingExtraction, errors: list[str], warnings: list[str]) -> None:
@@ -109,4 +109,4 @@ def _validate_risks(meeting: MeetingExtraction, errors: list[str], warnings: lis
             warnings.append(f"Risk {index} has no supporting evidence.")
 
         if risk.status in {"inferred", "unclear"}:
-            warnings.append(f"Action item {index} has status '{risk.status}' and should be reviewed.")
+            warnings.append(f"Risk {index} has status '{risk.status}' and should be reviewed.")
