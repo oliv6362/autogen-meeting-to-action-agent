@@ -1,0 +1,38 @@
+Meeting title: Sprint Planning - Customer Feedback Dashboard
+Date: 2026-05-11
+
+Participants:
+- Oliver
+- Emma
+- Noah
+- Sofia
+
+Transcript:
+
+Emma: The goal for this sprint is to prepare the first version of the customer feedback dashboard.
+
+Oliver: I can implement the API endpoint for retrieving categorized feedback. I should be able to finish it by Friday.
+
+Emma: Good. Then we will use the existing feedback database for the first prototype instead of creating a new database.
+
+Noah: I can work on the dashboard UI. I will create the first version before next Wednesday.
+
+Sofia: We still need to decide whether the dashboard should support exporting results to CSV in the first release.
+
+Emma: Let us treat CSV export as an open question for now. It may delay the prototype if we include it too early.
+
+Oliver: The sentiment labels are sometimes inconsistent, so the dashboard numbers might not be fully reliable yet.
+
+Emma: That is a risk. We should mention that the first dashboard version is only for internal testing.
+
+Noah: Should we include charts in the first prototype?
+
+Emma: Yes, we should include a simple bar chart showing positive, neutral, and negative feedback counts.
+
+Sofia: I can write a short test plan for the dashboard before the sprint review.
+
+Emma: Great. Sofia owns the test plan, but we did not agree on a specific deadline.
+
+Oliver: I will also add basic error handling to the API if the feedback service does not respond.
+
+Emma: Perfect. The main decisions are that we use the existing database, include a simple sentiment chart, and keep CSV export unresolved for now.
