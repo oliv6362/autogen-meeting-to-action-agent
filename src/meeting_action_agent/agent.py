@@ -1,46 +1,22 @@
 from autogen import ConversableAgent
-
 from src.meeting_action_agent.config import LLM_CONFIG
-from src.meeting_action_agent.tools.input_tool import read_meeting_file
-from src.meeting_action_agent.tools.validation_tool import validate_meeting_output
-from src.meeting_action_agent.tools.formatter_tool import format_meeting_report
 
 
 def create_meeting_agent() -> ConversableAgent:
     meeting_agent = ConversableAgent(
         name="meeting_action_agent",
         system_message=(
-            "You are an AI meeting-to-action assistant. "
-            "Your task is to analyze meeting transcripts, notes, or messy project discussions "
-            "and turn them into structured follow-up work. "
-            "\n\n"
+            "You are an AI meeting-to-action extraction assistant. "
+            "Your task is to analyze meeting transcripts and extract structured follow-up information. "
             "You must identify decisions, action items, owners, deadlines, open questions, and risks. "
-            "\n\n"
-            "You are only allowed to use these tools: read_meeting_file, validate_meeting_output, and format_meeting_report. "
-            "Do not request or invent any other tools. "
-            "Do not use web search, Google search, browser tools, or external APIs. "
-            "Do not search for general meeting-minute examples. "
-            "\n\n"
-            "Use read_meeting_file when the user provides a file path. "
-            "If read_meeting_file returns success=false, do not continue with extraction. "
-            "Report the error clearly and end with TERMINATE. "
-            "If read_meeting_file returns success=true, use the content field as the meeting text. "
-            "Extract structured meeting information from that meeting text. "
-            "Use validate_meeting_output to validate the structured data. "
-            "If validation returns errors, report the validation errors and end with TERMINATE. "
-            "If validation succeeds, use format_meeting_report to create the final Markdown report. "
-            "Return only the final Markdown report and end with TERMINATE. "
-            "\n\n"
-            "Rules: "
             "Do not invent information. "
-            "Every decision, action item, open question, and risk must include evidence from the meeting text. "
-            "Mark information as explicit only when it is clearly stated in the meeting text. "
-            "Mark information as inferred when it is a reasonable conclusion but not directly stated. "
+            "Every extracted decision, action item, open question, and risk must include evidence from the meeting text. "
+            "Use explicit when information is directly stated. "
+            "Use inferred when it is a reasonable conclusion but not directly stated. "
+            "Use unclear when the information is ambiguous. "
             "If an owner is missing, use 'Unclear'. "
             "If a deadline is missing, use 'Not specified'. "
-            "If the meeting contains contradictions, mark them as unresolved instead of choosing one side. "
-            "\n\n"
-            "When the task is complete, end your response with TERMINATE."
+            "Return only the structured data requested by the workflow."
         ),
         llm_config=LLM_CONFIG,
     )
@@ -61,48 +37,8 @@ def create_user_proxy() -> ConversableAgent:
     return user_proxy
 
 
-def register_tools(meeting_agent: ConversableAgent, user_proxy: ConversableAgent) -> None:
-    """
-    Register Python functions as AutoGen tools.
-
-    The meeting agent can request tools.
-    The user proxy executes the actual Python functions.
-    """
-
-    meeting_agent.register_for_llm(
-        name="read_meeting_file",
-        description=(
-            "Read a local meeting transcript or notes file. "
-            "Input: file_path. "
-            "Output: a dictionary with success, file_path, content, and error. "
-            "If success is false, do not continue with extraction. "
-            "Use this when the user provides a file path instead of directly providing meeting text."
-        ),
-    )(read_meeting_file)
-
-    user_proxy.register_for_execution(
-        name="read_meeting_file"
-    )(read_meeting_file)
-
-    meeting_agent.register_for_llm(
-        name="validate_meeting_output",
-        description=(
-            "Validate structured meeting extraction output using deterministic Python checks. "
-            "Input: structured meeting data as JSON-compatible data. "
-            "Output: validation result with valid, errors, and warnings. "
-            "Use this after extracting decisions, action items, open questions, and risks."
-        ),
-    )(validate_meeting_output)
-
-    user_proxy.register_for_execution(
-        name="validate_meeting_output"
-    )(validate_meeting_output)
-
-
 def create_agents() -> tuple[ConversableAgent, ConversableAgent]:
     meeting_agent = create_meeting_agent()
     user_proxy = create_user_proxy()
-
-    register_tools(meeting_agent, user_proxy)
 
     return meeting_agent, user_proxy
