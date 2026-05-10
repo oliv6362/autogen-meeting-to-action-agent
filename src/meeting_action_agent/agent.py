@@ -3,6 +3,14 @@ from src.meeting_action_agent.config import LLM_CONFIG
 
 
 def create_meeting_agent() -> ConversableAgent:
+    """
+    Create the LLM-powered meeting extraction agent.
+
+    The agent is responsible for interpreting meeting text and returning
+    structured data. Deterministic steps such as file reading, validation,
+    formatting, and logging are handled by the workflow.
+    """
+
     meeting_agent = ConversableAgent(
         name="meeting_action_agent",
         system_message=(
@@ -25,6 +33,13 @@ def create_meeting_agent() -> ConversableAgent:
 
 
 def create_user_proxy() -> ConversableAgent:
+    """
+    Create the non-LLM user proxy agent.
+
+    Human input is disabled so the workflow can run automatically during
+    normal execution and evaluation.
+    """
+
     user_proxy = ConversableAgent(
         name="user_proxy",
         llm_config=False,
@@ -38,6 +53,13 @@ def create_user_proxy() -> ConversableAgent:
 
 
 def create_agents() -> tuple[ConversableAgent, ConversableAgent]:
+    """
+    Create the agents used by the workflow.
+
+    Returns:
+        A tuple containing the meeting extraction agent and the user proxy.
+    """
+
     meeting_agent = create_meeting_agent()
     user_proxy = create_user_proxy()
 
