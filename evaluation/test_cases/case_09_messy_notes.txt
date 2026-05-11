@@ -1,0 +1,16 @@
+Meeting notes - Bug Triage
+Date: 2026-05-19
+
+People: Oliver, Emma, Noah
+
+Notes:
+- Production bug: users sometimes get logged out after refreshing the page.
+- Emma says this is probably related to session cookie settings.
+- Decision: patch current authentication service instead of replacing it.
+- Oliver -> inspect cookie expiration config. Deadline: tomorrow.
+- Noah -> reproduce issue in staging. Deadline: Friday.
+- Question: do we need to rotate all active sessions after the fix? Not decided.
+- Risk: if the patch changes cookie behavior, some users may be forced to log in again.
+- Emma: do not deploy directly to production. Use staging first.
+- No owner assigned for writing release notes.
+- Release notes should be ready before deployment.

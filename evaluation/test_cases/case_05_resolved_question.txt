@@ -1,0 +1,27 @@
+Meeting title: Mobile App Release Planning
+Date: 2026-05-15
+
+Participants:
+- Sara
+- Oliver
+- Mikkel
+
+Transcript:
+
+Sara: We need to decide whether push notifications should be included in the first mobile release.
+
+Mikkel: I think they are important, but they may delay the release.
+
+Oliver: Could we include only basic push notifications for order updates?
+
+Sara: Yes, let us include basic push notifications for order updates only. Marketing notifications can wait.
+
+Mikkel: I will implement the push notification setup by next Thursday.
+
+Oliver: I will update the API endpoint for notification preferences by Tuesday.
+
+Sara: The risk is that app store approval may take longer than expected.
+
+Mikkel: Should we include in-app chat in the first release?
+
+Sara: No. In-app chat is out of scope for the first release.

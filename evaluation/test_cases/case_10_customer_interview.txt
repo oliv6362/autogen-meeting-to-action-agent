@@ -1,0 +1,35 @@
+Customer Interview - Reporting Feature
+Date: 2026-05-20
+
+Participants:
+- Interviewer: Emma
+- Customer: Thomas from Northwind Logistics
+- Observer: Oliver
+
+Transcript:
+
+Emma: What is the biggest problem with the current reporting workflow?
+
+Thomas: It takes too long to create weekly delivery reports. We export data manually, clean it in Excel, and then send it to managers.
+
+Emma: What would help most?
+
+Thomas: A scheduled report would help. If the system could send a weekly PDF automatically, that would save a lot of time.
+
+Oliver: Would CSV export also be useful?
+
+Thomas: Yes, but PDF is more important for managers.
+
+Emma: Any objections or concerns?
+
+Thomas: I am concerned that automatic reports could include outdated data if the delivery system has not synchronized yet.
+
+Emma: Good point. We should follow up on data freshness requirements.
+
+Oliver: I can summarize the interview notes by Friday.
+
+Emma: I will ask Thomas for an example of the current weekly report.
+
+Thomas: I can send an example tomorrow.
+
+Emma: We have not decided yet whether scheduled reports should be part of the first release.

@@ -1,0 +1,27 @@
+Meeting title: Internal Tool Planning
+Date: 2026-05-13
+
+Participants:
+- Emma
+- Lars
+- Priya
+
+Transcript:
+
+Emma: The support team needs a small internal tool to search customer tickets faster.
+
+Lars: We should create a simple search page with filters for customer ID, status, and date range.
+
+Priya: I agree. The first version should only search closed tickets. Searching open tickets can come later.
+
+Emma: Good. So we decided that version one will only search closed tickets.
+
+Lars: Someone needs to write the technical setup guide before Monday.
+
+Priya: I can prepare the database migration script by Thursday.
+
+Emma: The main risk is that the ticket data has inconsistent status values, which could make the filters unreliable.
+
+Lars: We also need to decide whether the tool should support exporting search results.
+
+Emma: Let us leave export support unresolved for now.

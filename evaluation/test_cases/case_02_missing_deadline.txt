@@ -1,0 +1,27 @@
+Meeting title: Website Launch Follow-up
+Date: 2026-05-12
+
+Participants:
+- Maria
+- Oliver
+- Jonas
+
+Transcript:
+
+Maria: We need to prepare the website for the public launch.
+
+Oliver: I can review the deployment pipeline and make sure the staging environment matches production.
+
+Maria: Good. Oliver owns the deployment review.
+
+Jonas: I will update the landing page copy before Friday.
+
+Maria: Great. We also agreed that the launch will use the current design instead of waiting for the new brand package.
+
+Oliver: There is still a risk that the contact form fails under higher traffic because we have not load tested it.
+
+Maria: Let us keep the load test as a follow-up topic, but we are not assigning it today.
+
+Jonas: Should we include a newsletter signup on the first launch version?
+
+Maria: Not yet. We will postpone newsletter signup until after the launch.

@@ -1,0 +1,25 @@
+Meeting title: Architecture Discussion - Notification Service
+Date: 2026-05-14
+
+Participants:
+- Oliver
+- Emma
+- Viktor
+
+Transcript:
+
+Emma: Today we are only discussing the architecture direction for the notification service. We are not assigning implementation tasks yet.
+
+Oliver: I think the service should expose a REST API for sending notification requests.
+
+Viktor: I agree, but the actual delivery should happen asynchronously through a message queue.
+
+Emma: Then the decision is that the notification service will receive requests through REST and process delivery asynchronously.
+
+Oliver: Should we use RabbitMQ or Azure Service Bus?
+
+Emma: That is still unresolved. We need more information before deciding.
+
+Viktor: A risk is that retries could send duplicate notifications if idempotency is not handled correctly.
+
+Emma: Good point. We should capture that as a risk, but again, no action items today.

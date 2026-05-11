@@ -1,0 +1,25 @@
+Meeting title: Payment Integration Meeting
+Date: 2026-05-16
+
+Participants:
+- Emma
+- Oliver
+- Nadia
+
+Transcript:
+
+Emma: We need to prepare the payment integration for the checkout flow.
+
+Oliver: I can add the payment provider abstraction layer by Friday.
+
+Nadia: I will prepare test cards and payment test scenarios before next Wednesday.
+
+Emma: We have decided to use the existing checkout service instead of creating a new checkout service.
+
+Oliver: One unresolved question is whether we should support MobilePay in the first version.
+
+Nadia: We also need to know whether refunds should be handled manually or through the provider API.
+
+Emma: Let us leave both of those open until we have pricing and API information from the provider.
+
+Oliver: The main risk is that provider API limits could affect checkout performance during peak traffic.

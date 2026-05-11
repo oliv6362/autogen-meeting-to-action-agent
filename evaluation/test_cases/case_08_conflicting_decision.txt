@@ -1,0 +1,29 @@
+Meeting title: Admin Dashboard Scope Discussion
+Date: 2026-05-18
+
+Participants:
+- Emma
+- Oliver
+- Freja
+
+Transcript:
+
+Emma: We need to decide what should be included in the first admin dashboard release.
+
+Oliver: I think user management should be included from day one.
+
+Freja: I disagree. User management may be too large for the first release.
+
+Emma: Let us say for now that the first version focuses on viewing reports only.
+
+Oliver: Later in the meeting, I still think we should include at least basic user management.
+
+Freja: I do not think we agreed on that.
+
+Emma: Correct. We agreed on reports for the first version, but user management remains unresolved.
+
+Freja: I will create the report overview wireframe by Friday.
+
+Oliver: I can list the required report filters, but I do not have a deadline yet.
+
+Emma: A risk is that unclear scope could delay the dashboard.
