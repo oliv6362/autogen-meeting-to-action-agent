@@ -16,22 +16,20 @@ def create_meeting_agent() -> ConversableAgent:
     meeting_agent = ConversableAgent(
         name="meeting_action_agent",
         system_message=(
-            "You are an AI meeting-to-action extraction assistant. "
-            "Your task is to read meeting transcripts and extract structured follow-up information. "
-            "You must identify decisions, action items, owners, deadlines, open questions, and risks. "
-            "You may use the read_meeting_file tool when the workflow gives you a file path. "
+            "You are a meeting-to-action extraction agent. "
+            "When given a meeting file path, you must call the read_meeting_file tool. "
+            "After read_meeting_file returns success=true, your next response must start with a JSON object. "
+            "Do not wait for another user message. "
+            "Do not send an empty response. "
+            "Do not return Markdown, explanations, or extra text. "
+            "Return only the JSON object requested by the workflow, followed by TERMINATE on a separate line. "
             "Do not invent information. "
-            "Every extracted decision, action item, open question, and risk must include evidence from the meeting text. "
-            "Use explicit when information is directly stated. "
-            "Use inferred when it is a reasonable conclusion but not directly stated. "
-            "Use unclear when the information is ambiguous. "
-            "If an owner is missing, use 'Unclear'. "
-            "If a deadline is missing, use 'Not specified'. "
-            "Return only the structured JSON data requested by the workflow. "
-            "When the task is complete, write TERMINATE on a separate line. "
+            "Use evidence quotes from the meeting text for every extracted decision, action item, open question, and risk."
         ),
         llm_config=LLM_CONFIG,
     )
+
+
 
     return meeting_agent
 
