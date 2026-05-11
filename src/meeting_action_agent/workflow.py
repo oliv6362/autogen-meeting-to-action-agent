@@ -41,8 +41,15 @@ def run_meeting_workflow(input_file: str = DEFAULT_INPUT_FILE, output_file: str 
 
     try:
         extracted_data = _extract_json_from_response(raw_response)
-    except ValueError:
-        error_report = _build_error_report(raw_response.replace("TERMINATE", "").strip())
+    except ValueError as error:
+        cleaned_response = raw_response.replace("TERMINATE", "").strip()
+
+        if not cleaned_response:
+            error_message = "The LLM did not return a JSON object after reading the meeting file."
+        else:
+            error_message = f"{error}\n\nRaw response:\n{cleaned_response}"
+
+        error_report = _build_error_report(error_message)
         _save_output(error_report, output_file)
         return error_report
 
