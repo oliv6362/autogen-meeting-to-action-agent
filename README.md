@@ -80,6 +80,101 @@ AutoGenMeetingToActionAgent/
             └── validation_tool.py
 ```
 
+## Prerequisites
+
+- The project was developed using Python 3.12 in a Miniconda3 environment.
+- Make sure Ollama is installed and running locally.
+- Make sure you have pulled the configured Ollama model. 
+   
+For example:
+    
+    Ollama pull gemma4:latest
+
+
+## Requirements & Installation
+
+- You do not need to install any requirement.txt file, instead you just need to import the envirment.yml file.
+
+Import the Conda environment from the environment.yml file from the project root folder:
+
+    conda env create --file environment.yml
+
+Activate the Conda environment:
+
+    conda activate AutoGenMeetingToActionAgent
+
+If necessary, remove the Conda environment with:
+
+    conda env remove -n AutoGenMeetingToActionAgent
+
+## Configuration
+
+The local LLM configuration is defined in:
+
+    src/meeting_action_agent/config.py
+
+Example Ollama configuration:
+
+    LLM_CONFIG = {
+        "config_list": [
+            {
+                "model": "gemma4:latest",
+                "api_type": "ollama",
+                "client_host": "http://127.0.0.1:11434",
+                "native_tool_calls": False,
+            }
+        ],
+        "temperature": 0.1,
+        "seed": 42,
+        "cache_seed": None,
+    }
+
+The default input and output paths are also configured in this file:
+
+    LOG_DIR = "logs"
+    DEFAULT_INPUT_FILE = "data/sample_meetings/demo_meeting.txt"
+    DEFAULT_OUTPUT_FILE = "generated/meeting_report.md"
+
+## Run the Agent
+
+From the project root, run:
+
+    python main.py
+
+By default, this reads:
+
+    data/sample_meetings/demo_meeting.txt
+
+And writes the generated report to:
+
+    generated/meeting_report.md
+
+You can also provide a custom input and output file:
+
+    python main.py --input data/sample_meetings/demo_meeting.txt --output generated/meeting_report.md
+
+## Run the Evaluation
+
+From the project root, run:
+
+    python evaluate.py
+
+This runs the agent on all fixed test cases in:
+
+    evaluation/test_cases/
+
+And writes the generated outputs to:
+
+    evaluation/outputs/
+
+A short evaluation summary is available at:
+
+    evaluation/evaluation_results.md
+
+Tool calls are logged to:
+
+    logs/tool_calls.jsonl
+
 ## Evaluation
 
 The agent was evaluated on 10 fixed meeting transcript test cases.
