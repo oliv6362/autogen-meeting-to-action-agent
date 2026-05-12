@@ -22,7 +22,7 @@ The final output is grounded in the retrieved meeting text through evidence quot
 
 ## Tools
 
-The project uses three tools:
+The system uses three project tools.  
 
 | Tool | Purpose |
 |---|---|
@@ -30,9 +30,7 @@ The project uses three tools:
 | validate_meeting_output | Validates the extracted structured data using Pydantic and deterministic checks. |
 | format_meeting_report | Formats validated meeting data into a readable Markdown report. |
 
-The LLM agent calls read_meeting_file through AutoGen.
-
-Validation and formatting are handled deterministically by the workflow.
+The LLM agent calls read_meeting_file through AutoGen, while validation and formatting are executed deterministically by the workflow.
 
 ## Workflow
 
@@ -88,12 +86,10 @@ AutoGenMeetingToActionAgent/
    
 For example:
     
-    Ollama pull gemma4:latest
+    ollama pull gemma4:latest
 
 
-## Requirements & Installation
-
-- You do not need to install any requirement.txt file, instead you just need to import the envirment.yml file.
+## Installation
 
 Import the Conda environment from the environment.yml file from the project root folder:
 
@@ -174,6 +170,27 @@ A short evaluation summary is available at:
 Tool calls are logged to:
 
     logs/tool_calls.jsonl
+
+## Tool Call Logging
+
+Tool calls are logged as JSON Lines in:
+
+    logs/tool_calls.jsonl
+
+Each log entry includes:
+
+- timestamp
+- tool name
+- input arguments
+- tool output
+
+The logged tools include:
+
+- read_meeting_file
+- validate_meeting_output
+- format_meeting_report
+
+This makes it possible to inspect how the workflow used external data, validation, and formatting steps
 
 ## Evaluation
 
